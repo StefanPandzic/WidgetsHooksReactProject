@@ -14,13 +14,14 @@ const Dropdown = ({ label, options, selected, onSelectedChange }) => {
             setOpen(false);
         };
         // eventi sa addEventListener se uvek prvi trigeruju pa onda ostali
-        document.body.addEventListener('click', onBodyClick);
+        document.body.addEventListener("click", onBodyClick, { capture: true });
 
         //Clean UP funkcija ako se ukloni Dropdown da pocisti eventelistenere
         return () => {
-            document.body.removeEventListener('click', onBodyClick);
+            document.body.removeEventListener("click", onBodyClick, {
+              capture: true,
+            });
         };
-
     }, []);
     
     const renderedOptions = options.map ((option) => {
